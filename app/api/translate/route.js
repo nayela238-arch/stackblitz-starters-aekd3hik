@@ -43,7 +43,13 @@ export async function POST(request) {
     )
   }
 
-  const prompt = `Translate the following text from ${from} to ${to}. Return only the translation, nothing else.\n\n${text}`
+  const prompt = `Translate the following text from ${from} to ${to}.
+Preserve the exact meaning and intended context.
+Use natural, fluent language in the target language.
+Do not translate word-for-word if that would sound unnatural.
+Return only the translation, nothing else.
+
+${text}`
   const res = await fetch(
     `https://generativelanguage.googleapis.com/v1beta/models/${MODEL}:generateContent`,
     {

@@ -1,7 +1,7 @@
 import { NextResponse } from 'next/server'
 import { createClient } from '@supabase/supabase-js'
 
-const DAILY_LIMIT = 3
+const DAILY_LIMIT = 100
 const MAX_CHARS = 1500
 const MODEL = 'gemini-3.7-flash'
 export async function POST(request) {

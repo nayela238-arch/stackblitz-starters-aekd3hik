@@ -6,6 +6,7 @@ import { supabase } from '../../../lib/supabase'
 
 export default function OrderPage() {
   const { id } = useParams()
+
   const [order, setOrder] = useState(null)
   const [user, setUser] = useState(null)
   const [role, setRole] = useState(null)
@@ -15,6 +16,8 @@ export default function OrderPage() {
   const [message, setMessage] = useState('')
   const [msg, setMsg] = useState('')
   const [fileUrl, setFileUrl] = useState(null)
+  const [translatorFile, setTranslatorFile] = useState(null)
+  const [uploadMsg, setUploadMsg] = useState('')
 
   async function load() {
     const { data: o } = await supabase
@@ -95,11 +98,54 @@ export default function OrderPage() {
     load()
   }
 
+  async function uploadTranslatorFile() {
+    if (!translatorFile || !user) {
+      setUploadMsg('اختار ملف الترجمة الأول')
+      return
+    }
+
+    setUploadMsg('جاري رفع الملف...')
+
+    const fileName = `${user.id}/${id}/translated-${Date.now()}-${translatorFile.name}`
+
+    const { error: uploadError } = await supabase.storage
+      .from('translation-files')
+      .upload(fileName, translatorFile)
+
+    if (uploadError) {
+      setUploadMsg(
+        'حصل خطأ أثناء رفع الملف: ' + uploadError.message
+      )
+      return
+    }
+
+    const { error: updateError } = await supabase
+      .from('orders')
+      .update({
+        translator_file_path: fileName,
+      })
+      .eq('id', id)
+
+    if (updateError) {
+      setUploadMsg(
+        'تم رفع الملف لكن حصل خطأ في حفظه: ' +
+          updateError.message
+      )
+      return
+    }
+
+    setUploadMsg('تم رفع ملف الترجمة بنجاح ✅')
+    setTranslatorFile(null)
+    load()
+  }
+
   if (!order) {
     return <p dir="rtl">جاري التحميل...</p>
   }
 
   const isOwner = user?.id === order.client_id
+  const isAssignedTranslator =
+    user?.id === order.translator_id
 
   return (
     <main
@@ -132,7 +178,7 @@ export default function OrderPage() {
             borderRadius: 10,
           }}
         >
-          <h3>ملف الترجمة</h3>
+          <h3>ملف الترجمة الأصلي</h3>
 
           <a
             href={fileUrl}
@@ -142,6 +188,35 @@ export default function OrderPage() {
           >
             فتح / تحميل الملف
           </a>
+        </div>
+      )}
+
+      {isAssignedTranslator && (
+        <div
+          style={{
+            marginTop: 20,
+            padding: 16,
+            border: '1px solid #ddd',
+            borderRadius: 10,
+          }}
+        >
+          <h3>رفع الترجمة النهائية</h3>
+
+          <input
+            type="file"
+            onChange={e =>
+              setTranslatorFile(e.target.files?.[0] || null)
+            }
+          />
+
+          <button
+            onClick={uploadTranslatorFile}
+            style={{ marginTop: 10 }}
+          >
+            رفع ملف الترجمة
+          </button>
+
+          {uploadMsg && <p>{uploadMsg}</p>}
         </div>
       )}
 

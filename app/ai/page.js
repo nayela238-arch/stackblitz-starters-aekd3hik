@@ -15,24 +15,56 @@ export default function AiTranslate() {
     setMsg('')
     setResult('')
     setLoading(true)
+
     const { data: { session } } = await supabase.auth.getSession()
     if (!session) {
       setLoading(false)
       return setMsg('سجّل دخول الأول من /login')
     }
-    const res = await fetch('/api/translate', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        Authorization: `Bearer ${session.access_token}`,
-      },
-      body: JSON.stringify({ text, from, to }),
-    })
-    const data = await res.json()
+
+    try {
+      const res = await fetch('/api/translate-stream', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${session.access_token}`,
+        },
+        body: JSON.stringify({ text, from, to }),
+      })
+
+      if (!res.ok || !res.body) {
+        let errMsg = 'حصل خطأ'
+        try {
+          const data = await res.json()
+          errMsg = data.error || errMsg
+        } catch (_) {}
+        setLoading(false)
+        return setMsg(errMsg)
+      }
+
+      const reader = res.body.getReader()
+      const decoder = new TextDecoder()
+      let full = ''
+      while (true) {
+        const { done, value } = await reader.read()
+        if (done) break
+        full += decoder.decode(value, { stream: true })
+        setResult(full)
+      }
+
+      const remaining = res.headers.get('X-Remaining')
+      if (remaining !== null) {
+        setMsg(`متبقي لك ${remaining} ترجمات مجانية النهاردة`)
+      }
+      if (!full.trim()) {
+        setMsg('حصل خطأ في الترجمة، جرّب بعد شوية')
+      }
+    } catch (err) {
+      console.error(err)
+      setMsg('حصل خطأ في الاتصال، جرّب تاني')
+    }
+
     setLoading(false)
-    if (!res.ok) return setMsg(data.error || 'حصل خطأ')
-    setResult(data.translation)
-    setMsg(`متبقي لك ${data.remaining} ترجمات مجانية النهاردة`)
   }
 
   return (

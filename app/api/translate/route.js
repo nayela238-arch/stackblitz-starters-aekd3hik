@@ -6,7 +6,7 @@ export const maxDuration = 60
 const DAILY_LIMIT = 100
 const MAX_CHARS = 1500
 const MODEL = 'gemini-3.7-flash'
-const FALLBACK_MODEL = 'gemini-2.5-flash'
+const FALLBACK_MODELS = ['gemini-3.6-flash', 'gemini-3.5-flash']
 const RETRYABLE = [429, 500, 503, 504]
 
 const sleep = (ms) => new Promise((r) => setTimeout(r, ms))
@@ -86,7 +86,7 @@ export async function POST(request) {
     generationConfig: { temperature: 0.2 },
   })
 
-  const attempts = [MODEL, MODEL, FALLBACK_MODEL]
+  const attempts = [MODEL, ...FALLBACK_MODELS]
   let data = null
 
   for (let i = 0; i < attempts.length; i++) {
@@ -102,7 +102,7 @@ export async function POST(request) {
     } catch (err) {
       console.error('Gemini fetch failed', attempts[i], err?.name || err)
     }
-    if (i < attempts.length - 1) await sleep(700)
+    if (i < attempts.length - 1) await sleep(500)
   }
 
   const translation = (data?.candidates?.[0]?.content?.parts?.[0]?.text || '').trim()

@@ -16,6 +16,7 @@ export default function OrderPage() {
   const [message, setMessage] = useState('')
   const [msg, setMsg] = useState('')
   const [fileUrl, setFileUrl] = useState(null)
+  const [translatedFileUrl, setTranslatedFileUrl] = useState(null)
   const [translatorFile, setTranslatorFile] = useState(null)
   const [uploadMsg, setUploadMsg] = useState('')
 
@@ -58,6 +59,16 @@ export default function OrderPage() {
 
       if (!error) {
         setFileUrl(data?.signedUrl || null)
+      }
+    }
+
+    if (o?.translator_file_path) {
+      const { data, error } = await supabase.storage
+        .from('translation-files')
+        .createSignedUrl(o.translator_file_path, 3600)
+
+      if (!error) {
+        setTranslatedFileUrl(data?.signedUrl || null)
       }
     }
   }
@@ -187,6 +198,28 @@ export default function OrderPage() {
             style={{ color: '#2563eb' }}
           >
             فتح / تحميل الملف
+          </a>
+        </div>
+      )}
+
+      {translatedFileUrl && (
+        <div
+          style={{
+            marginTop: 20,
+            padding: 16,
+            border: '1px solid #ddd',
+            borderRadius: 10,
+          }}
+        >
+          <h3>ملف الترجمة النهائي</h3>
+
+          <a
+            href={translatedFileUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            style={{ color: '#16a34a' }}
+          >
+            فتح / تحميل الترجمة النهائية
           </a>
         </div>
       )}

@@ -8,27 +8,38 @@ export default function Home() {
     fontSize: 16,
   } as const
 
+  const card = {
+    background: 'rgba(255, 255, 255, 0.05)',
+    borderRadius: 20,
+    padding: 26,
+    border: '1px solid rgba(148, 163, 184, 0.18)',
+    boxShadow: '0 10px 30px rgba(2, 6, 23, 0.35)',
+  } as const
+
+  const link = { color: '#60a5fa', fontWeight: 700 } as const
+
   return (
     <div
       dir="rtl"
       style={{
         minHeight: '100vh',
-        background: '#f8fafc',
-        color: '#0f172a',
+        background:
+          'linear-gradient(160deg, #0b1437 0%, #111c4e 45%, #1e1b4b 100%)',
+        color: '#e2e8f0',
         fontFamily: 'Arial, sans-serif',
       }}
     >
       <header
         style={{
-          background: '#ffffff',
-          borderBottom: '1px solid #e5e7eb',
+          background: 'rgba(11, 20, 55, 0.7)',
+          borderBottom: '1px solid rgba(148, 163, 184, 0.15)',
           padding: '18px 6%',
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'space-between',
         }}
       >
-        <div style={{ fontSize: 22, fontWeight: 800 }}>
+        <div style={{ fontSize: 22, fontWeight: 800, color: '#ffffff' }}>
           🌐 منصة الترجمة
         </div>
 
@@ -51,7 +62,7 @@ export default function Home() {
           style={{
             padding: '90px 6% 80px',
             background:
-              'linear-gradient(135deg, #eff6ff 0%, #ffffff 50%, #eef2ff 100%)',
+              'radial-gradient(circle at 50% 0%, rgba(59, 130, 246, 0.28), transparent 60%)',
             textAlign: 'center',
           }}
         >
@@ -60,8 +71,9 @@ export default function Home() {
               display: 'inline-block',
               padding: '8px 16px',
               borderRadius: 999,
-              background: '#dbeafe',
-              color: '#1d4ed8',
+              background: 'rgba(59, 130, 246, 0.15)',
+              border: '1px solid rgba(96, 165, 250, 0.35)',
+              color: '#93c5fd',
               fontWeight: 700,
               fontSize: 14,
               marginBottom: 20,
@@ -77,18 +89,19 @@ export default function Home() {
               margin: '0 auto 24px',
               maxWidth: 900,
               fontWeight: 900,
+              color: '#ffffff',
             }}
           >
             ترجمتك،
             <br />
-            <span style={{ color: '#2563eb' }}>بشكل أسهل وأسرع</span>
+            <span style={{ color: '#60a5fa' }}>بشكل أسهل وأسرع</span>
           </h1>
 
           <p
             style={{
               maxWidth: 720,
               margin: '0 auto',
-              color: '#64748b',
+              color: '#94a3b8',
               fontSize: 19,
               lineHeight: 1.9,
             }}
@@ -112,7 +125,7 @@ export default function Home() {
                 ...button,
                 background: '#2563eb',
                 color: '#fff',
-                boxShadow: '0 8px 20px rgba(37, 99, 235, 0.25)',
+                boxShadow: '0 8px 24px rgba(37, 99, 235, 0.45)',
               }}
             >
               📝 اطلب ترجمة
@@ -122,9 +135,9 @@ export default function Home() {
               href="/ai"
               style={{
                 ...button,
-                background: '#ffffff',
-                color: '#0f172a',
-                border: '1px solid #d1d5db',
+                background: 'rgba(255, 255, 255, 0.06)',
+                color: '#e2e8f0',
+                border: '1px solid rgba(148, 163, 184, 0.35)',
               }}
             >
               🤖 جرّب AI
@@ -147,68 +160,35 @@ export default function Home() {
               gap: 18,
             }}
           >
-            <div
-              style={{
-                background: '#fff',
-                borderRadius: 20,
-                padding: 26,
-                border: '1px solid #e5e7eb',
-                boxShadow: '0 10px 30px rgba(15, 23, 42, 0.08)',
-              }}
-            >
+            <div style={card}>
               <div style={{ fontSize: 36 }}>👤</div>
-              <h2>لأصحاب الطلبات</h2>
-              <p style={{ color: '#64748b', lineHeight: 1.7 }}>
+              <h2 style={{ color: '#ffffff' }}>لأصحاب الطلبات</h2>
+              <p style={{ color: '#94a3b8', lineHeight: 1.7 }}>
                 انشر طلبك وحدد الميزانية واستقبل عروض المترجمين.
               </p>
-              <a
-                href="/orders/new"
-                style={{ color: '#2563eb', fontWeight: 700 }}
-              >
+              <a href="/orders/new" style={link}>
                 ابدأ الآن ←
               </a>
             </div>
 
-            <div
-              style={{
-                background: '#fff',
-                borderRadius: 20,
-                padding: 26,
-                border: '1px solid #e5e7eb',
-                boxShadow: '0 10px 30px rgba(15, 23, 42, 0.08)',
-              }}
-            >
+            <div style={card}>
               <div style={{ fontSize: 36 }}>💼</div>
-              <h2>للمترجمين</h2>
-              <p style={{ color: '#64748b', lineHeight: 1.7 }}>
+              <h2 style={{ color: '#ffffff' }}>للمترجمين</h2>
+              <p style={{ color: '#94a3b8', lineHeight: 1.7 }}>
                 ابحث عن طلبات مناسبة وقدّم عروضك للعملاء.
               </p>
-              <a
-                href="/orders"
-                style={{ color: '#2563eb', fontWeight: 700 }}
-              >
+              <a href="/orders" style={link}>
                 تصفح الطلبات ←
               </a>
             </div>
 
-            <div
-              style={{
-                background: '#fff',
-                borderRadius: 20,
-                padding: 26,
-                border: '1px solid #e5e7eb',
-                boxShadow: '0 10px 30px rgba(15, 23, 42, 0.08)',
-              }}
-            >
+            <div style={card}>
               <div style={{ fontSize: 36 }}>⚡</div>
-              <h2>ترجمة AI</h2>
-              <p style={{ color: '#64748b', lineHeight: 1.7 }}>
+              <h2 style={{ color: '#ffffff' }}>ترجمة AI</h2>
+              <p style={{ color: '#94a3b8', lineHeight: 1.7 }}>
                 ترجمة سريعة للنصوص باستخدام الذكاء الاصطناعي.
               </p>
-              <a
-                href="/ai"
-                style={{ color: '#2563eb', fontWeight: 700 }}
-              >
+              <a href="/ai" style={link}>
                 جرّب الآن ←
               </a>
             </div>
@@ -223,11 +203,11 @@ export default function Home() {
             textAlign: 'center',
           }}
         >
-          <h2 style={{ fontSize: 32, marginBottom: 12 }}>
+          <h2 style={{ fontSize: 32, marginBottom: 12, color: '#ffffff' }}>
             ليه تستخدم منصة الترجمة؟
           </h2>
 
-          <p style={{ color: '#64748b', fontSize: 17 }}>
+          <p style={{ color: '#94a3b8', fontSize: 17 }}>
             كل أدوات الترجمة اللي تحتاجها في مكان واحد.
           </p>
 
@@ -241,24 +221,24 @@ export default function Home() {
           >
             <div style={{ padding: 22 }}>
               <div style={{ fontSize: 30 }}>🔒</div>
-              <h3>آمنة</h3>
-              <p style={{ color: '#64748b' }}>
+              <h3 style={{ color: '#ffffff' }}>آمنة</h3>
+              <p style={{ color: '#94a3b8' }}>
                 ملفاتك وطلباتك محفوظة بأمان.
               </p>
             </div>
 
             <div style={{ padding: 22 }}>
               <div style={{ fontSize: 30 }}>💬</div>
-              <h3>عروض متعددة</h3>
-              <p style={{ color: '#64748b' }}>
+              <h3 style={{ color: '#ffffff' }}>عروض متعددة</h3>
+              <p style={{ color: '#94a3b8' }}>
                 قارن بين عروض المترجمين واختر الأنسب لك.
               </p>
             </div>
 
             <div style={{ padding: 22 }}>
               <div style={{ fontSize: 30 }}>📎</div>
-              <h3>رفع واستلام الملفات</h3>
-              <p style={{ color: '#64748b' }}>
+              <h3 style={{ color: '#ffffff' }}>رفع واستلام الملفات</h3>
+              <p style={{ color: '#94a3b8' }}>
                 ارفع ملفك الأصلي واستلم الترجمة النهائية من نفس الصفحة.
               </p>
             </div>
@@ -268,11 +248,11 @@ export default function Home() {
 
       <footer
         style={{
-          borderTop: '1px solid #e5e7eb',
-          background: '#ffffff',
+          borderTop: '1px solid rgba(148, 163, 184, 0.15)',
+          background: 'rgba(11, 20, 55, 0.7)',
           padding: '24px 6%',
           textAlign: 'center',
-          color: '#64748b',
+          color: '#94a3b8',
           fontSize: 14,
         }}
       >

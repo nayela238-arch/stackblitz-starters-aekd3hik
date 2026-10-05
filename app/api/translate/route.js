@@ -3,7 +3,7 @@ import { createClient } from '@supabase/supabase-js'
 
 const DAILY_LIMIT = 100
 const MAX_CHARS = 1500
-const MODEL = 'gemini-3.7-flash'
+const MODEL = 'gemini-3.8-flash'
 export async function POST(request) {
   const token = request.headers.get('authorization')?.replace('Bearer ', '')
   if (!token) {

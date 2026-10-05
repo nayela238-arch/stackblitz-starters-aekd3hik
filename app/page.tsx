@@ -44,9 +44,34 @@ export default function Home() {
         </div>
       </main>
 
-      <footer style={{ textAlign: 'center', padding: 24, color: '#888', fontSize: 13 }}>
-        الترجمة الآلية ممكن تحتوي على أخطاء، وللأوراق الرسمية استخدم مترجم بشري.
-      </footer>
+      <footer
+  style={{
+    textAlign: 'center',
+    padding: 24,
+    color: '#888',
+    fontSize: 13,
+  }}
+>
+  <p>
+    الترجمة الآلية ممكن تحتوي على أخطاء، وللأوراق الرسمية استخدم مترجم بشري.
+  </p>
+
+  <div style={{ marginTop: 12 }}>
+    <a
+      href="/terms"
+      style={{ color: '#2563eb', margin: '0 8px' }}
+    >
+      شروط الاستخدام
+    </a>
+
+    <a
+      href="/privacy"
+      style={{ color: '#2563eb', margin: '0 8px' }}
+    >
+      سياسة الخصوصية
+    </a>
+  </div>
+</footer>
     </div>
   )
 }

@@ -1,240 +1,251 @@
 export default function Home() {
-  const btn = {
+  const button = {
     display: 'inline-block',
-    padding: '13px 24px',
-    borderRadius: 10,
+    padding: '14px 26px',
+    borderRadius: 12,
     textDecoration: 'none',
     fontWeight: 700,
-    transition: '0.2s',
+    fontSize: 16,
   } as const
 
   return (
     <div
       dir="rtl"
       style={{
+        minHeight: '100vh',
         background: '#f8fafc',
         color: '#0f172a',
-        minHeight: '100vh',
         fontFamily: 'Arial, sans-serif',
       }}
     >
       <header
         style={{
           background: '#ffffff',
-          borderBottom: '1px solid #e2e8f0',
-          padding: '16px 24px',
+          borderBottom: '1px solid #e5e7eb',
+          padding: '18px 6%',
           display: 'flex',
-          justifyContent: 'space-between',
           alignItems: 'center',
-          position: 'sticky',
-          top: 0,
-          zIndex: 10,
+          justifyContent: 'space-between',
         }}
       >
-        <b style={{ fontSize: 21 }}>🌐 منصة الترجمة</b>
+        <div style={{ fontSize: 22, fontWeight: 800 }}>
+          🌐 منصة الترجمة
+        </div>
 
         <a
           href="/login"
           style={{
-            color: '#2563eb',
-            textDecoration: 'none',
-            fontWeight: 600,
+            ...button,
+            padding: '10px 18px',
+            background: '#2563eb',
+            color: '#fff',
+            fontSize: 14,
           }}
         >
-          دخول / تسجيل
+          دخول
         </a>
       </header>
 
-      <main style={{ maxWidth: 1000, margin: '0 auto', padding: '70px 20px' }}>
+      <main>
         <section
           style={{
+            padding: '90px 6% 80px',
+            background:
+              'linear-gradient(135deg, #eff6ff 0%, #ffffff 50%, #eef2ff 100%)',
             textAlign: 'center',
-            background: '#ffffff',
-            borderRadius: 24,
-            padding: '55px 25px',
-            boxShadow: '0 10px 35px rgba(15, 23, 42, 0.08)',
           }}
         >
           <div
             style={{
               display: 'inline-block',
-              background: '#eff6ff',
-              color: '#2563eb',
-              padding: '8px 14px',
+              padding: '8px 16px',
               borderRadius: 999,
-              fontSize: 14,
+              background: '#dbeafe',
+              color: '#1d4ed8',
               fontWeight: 700,
-              marginBottom: 18,
+              fontSize: 14,
+              marginBottom: 20,
             }}
           >
-            ترجمة بشرية وذكاء اصطناعي
+            🚀 منصة ترجمة متكاملة
           </div>
 
           <h1
             style={{
-              fontSize: 'clamp(32px, 6vw, 52px)',
-              lineHeight: 1.2,
-              margin: '0 0 18px',
+              fontSize: 'clamp(38px, 7vw, 68px)',
+              lineHeight: 1.1,
+              margin: '0 auto 24px',
+              maxWidth: 900,
+              fontWeight: 900,
             }}
           >
-            ترجمتك تبدأ من هنا
+            ترجمتك،
+            <br />
+            <span style={{ color: '#2563eb' }}>بشكل أسهل وأسرع</span>
           </h1>
 
           <p
             style={{
-              fontSize: 18,
-              lineHeight: 1.8,
+              maxWidth: 720,
+              margin: '0 auto',
               color: '#64748b',
-              maxWidth: 700,
-              margin: '0 auto 30px',
+              fontSize: 19,
+              lineHeight: 1.9,
             }}
           >
-            انشر طلب الترجمة، استقبل عروض من المترجمين،
-            أو استخدم الترجمة الفورية بالذكاء الاصطناعي.
+            اطلب ترجمة احترافية من مترجمين، أو استخدم الذكاء الاصطناعي
+            لترجمة النصوص بسرعة.
           </p>
 
           <div
             style={{
               display: 'flex',
-              gap: 12,
               justifyContent: 'center',
+              gap: 14,
               flexWrap: 'wrap',
+              marginTop: 34,
             }}
           >
             <a
               href="/orders/new"
               style={{
-                ...btn,
+                ...button,
                 background: '#2563eb',
                 color: '#fff',
+                boxShadow: '0 8px 20px rgba(37, 99, 235, 0.25)',
               }}
             >
-              انشر طلب ترجمة
+              📝 اطلب ترجمة
             </a>
 
             <a
               href="/ai"
               style={{
-                ...btn,
-                background: '#e2e8f0',
+                ...button,
+                background: '#ffffff',
                 color: '#0f172a',
+                border: '1px solid #d1d5db',
               }}
             >
-              جرّب ترجمة AI
+              🤖 جرّب AI
             </a>
           </div>
         </section>
 
         <section
           style={{
-            display: 'grid',
-            gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))',
-            gap: 18,
-            marginTop: 28,
+            maxWidth: 1100,
+            margin: '-35px auto 0',
+            padding: '0 20px',
+            position: 'relative',
           }}
         >
           <div
             style={{
-              background: '#ffffff',
-              border: '1px solid #e2e8f0',
-              borderRadius: 18,
-              padding: 24,
+              display: 'grid',
+              gridTemplateColumns: 'repeat(auto-fit, minmax(230px, 1fr))',
+              gap: 18,
             }}
           >
-            <div style={{ fontSize: 30 }}>📝</div>
-            <h2 style={{ fontSize: 21 }}>لأصحاب الطلبات</h2>
-            <p style={{ color: '#64748b', lineHeight: 1.7 }}>
-              انشر طلبك وحدد ميزانيتك واستقبل عروض المترجمين.
-            </p>
-            <a href="/orders/new" style={{ color: '#2563eb', fontWeight: 700 }}>
-              ابدأ طلبك ←
-            </a>
-          </div>
+            <div
+              style={{
+                background: '#fff',
+                borderRadius: 20,
+                padding: 26,
+                border: '1px solid #e5e7eb',
+                boxShadow: '0 10px 30px rgba(15, 23, 42, 0.08)',
+              }}
+            >
+              <div style={{ fontSize: 36 }}>👤</div>
+              <h2>لأصحاب الطلبات</h2>
+              <p style={{ color: '#64748b', lineHeight: 1.7 }}>
+                انشر طلبك وحدد الميزانية واستقبل عروض المترجمين.
+              </p>
+              <a
+                href="/orders/new"
+                style={{ color: '#2563eb', fontWeight: 700 }}
+              >
+                ابدأ الآن ←
+              </a>
+            </div>
 
-          <div
-            style={{
-              background: '#ffffff',
-              border: '1px solid #e2e8f0',
-              borderRadius: 18,
-              padding: 24,
-            }}
-          >
-            <div style={{ fontSize: 30 }}>👨‍💻</div>
-            <h2 style={{ fontSize: 21 }}>للمترجمين</h2>
-            <p style={{ color: '#64748b', lineHeight: 1.7 }}>
-              تصفح الطلبات المفتوحة وقدّم عروضك للعملاء.
-            </p>
-            <a href="/orders" style={{ color: '#2563eb', fontWeight: 700 }}>
-              شوف الطلبات ←
-            </a>
-          </div>
+            <div
+              style={{
+                background: '#fff',
+                borderRadius: 20,
+                padding: 26,
+                border: '1px solid #e5e7eb',
+                boxShadow: '0 10px 30px rgba(15, 23, 42, 0.08)',
+              }}
+            >
+              <div style={{ fontSize: 36 }}>💼</div>
+              <h2>للمترجمين</h2>
+              <p style={{ color: '#64748b', lineHeight: 1.7 }}>
+                ابحث عن طلبات مناسبة وقدّم عروضك للعملاء.
+              </p>
+              <a
+                href="/orders"
+                style={{ color: '#2563eb', fontWeight: 700 }}
+              >
+                تصفح الطلبات ←
+              </a>
+            </div>
 
-          <div
-            style={{
-              background: '#ffffff',
-              border: '1px solid #e2e8f0',
-              borderRadius: 18,
-              padding: 24,
-            }}
-          >
-            <div style={{ fontSize: 30 }}>🤖</div>
-            <h2 style={{ fontSize: 21 }}>ترجمة AI</h2>
-            <p style={{ color: '#64748b', lineHeight: 1.7 }}>
-              ترجم النصوص بسرعة باستخدام الذكاء الاصطناعي.
-            </p>
-            <a href="/ai" style={{ color: '#2563eb', fontWeight: 700 }}>
-              جرّب الآن ←
-            </a>
+            <div
+              style={{
+                background: '#fff',
+                borderRadius: 20,
+                padding: 26,
+                border: '1px solid #e5e7eb',
+                boxShadow: '0 10px 30px rgba(15, 23, 42, 0.08)',
+              }}
+            >
+              <div style={{ fontSize: 36 }}>⚡</div>
+              <h2>ترجمة AI</h2>
+              <p style={{ color: '#64748b', lineHeight: 1.7 }}>
+                ترجمة سريعة للنصوص باستخدام الذكاء الاصطناعي.
+              </p>
+              <a
+                href="/ai"
+                style={{ color: '#2563eb', fontWeight: 700 }}
+              >
+                جرّب الآن ←
+              </a>
+            </div>
           </div>
         </section>
 
         <section
           style={{
-            marginTop: 28,
-            background: '#0f172a',
-            color: '#ffffff',
-            borderRadius: 20,
-            padding: '30px 24px',
+            maxWidth: 1000,
+            margin: '80px auto',
+            padding: '0 24px',
             textAlign: 'center',
           }}
         >
-          <h2 style={{ marginTop: 0 }}>ترجمة أسهل. أسرع. أوضح.</h2>
-          <p style={{ color: '#cbd5e1', lineHeight: 1.7 }}>
-            منصة واحدة تجمع بين العملاء والمترجمين والترجمة بالذكاء الاصطناعي.
+          <h2 style={{ fontSize: 32, marginBottom: 12 }}>
+            ليه تستخدم منصة الترجمة؟
+          </h2>
+
+          <p style={{ color: '#64748b', fontSize: 17 }}>
+            كل أدوات الترجمة اللي تحتاجها في مكان واحد.
           </p>
-        </section>
-      </main>
 
-      <footer
-        style={{
-          textAlign: 'center',
-          padding: '30px 20px',
-          color: '#64748b',
-          fontSize: 13,
-          borderTop: '1px solid #e2e8f0',
-          background: '#ffffff',
-        }}
-      >
-        <p>
-          الترجمة الآلية ممكن تحتوي على أخطاء، وللأوراق الرسمية استخدم مترجمًا بشريًا.
-        </p>
-
-        <div style={{ marginTop: 14 }}>
-          <a
-            href="/terms"
-            style={{ color: '#2563eb', margin: '0 8px' }}
+          <div
+            style={{
+              display: 'grid',
+              gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))',
+              gap: 18,
+              marginTop: 30,
+            }}
           >
-            شروط الاستخدام
-          </a>
+            <div style={{ padding: 22 }}>
+              <div style={{ fontSize: 30 }}>🔒</div>
+              <h3>آمنة</h3>
+              <p style={{ color: '#64748b' }}>
+                ملفاتك وطلباتك محفوظة بأمان.
+              </p>
+            </div>
 
-          <a
-            href="/privacy"
-            style={{ color: '#2563eb', margin: '0 8px' }}
-          >
-            سياسة الخصوصية
-          </a>
-        </div>
-      </footer>
-    </div>
-  )
-}
+            <div style={{ padding: 22 }}>
+              <div style={{

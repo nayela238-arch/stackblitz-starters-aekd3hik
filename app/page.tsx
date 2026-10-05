@@ -248,4 +248,36 @@ export default function Home() {
             </div>
 
             <div style={{ padding: 22 }}>
-              <div style={{
+              <div style={{ fontSize: 30 }}>💬</div>
+              <h3>عروض متعددة</h3>
+              <p style={{ color: '#64748b' }}>
+                قارن بين عروض المترجمين واختر الأنسب لك.
+              </p>
+            </div>
+
+            <div style={{ padding: 22 }}>
+              <div style={{ fontSize: 30 }}>📎</div>
+              <h3>رفع واستلام الملفات</h3>
+              <p style={{ color: '#64748b' }}>
+                ارفع ملفك الأصلي واستلم الترجمة النهائية من نفس الصفحة.
+              </p>
+            </div>
+          </div>
+        </section>
+      </main>
+
+      <footer
+        style={{
+          borderTop: '1px solid #e5e7eb',
+          background: '#ffffff',
+          padding: '24px 6%',
+          textAlign: 'center',
+          color: '#64748b',
+          fontSize: 14,
+        }}
+      >
+        © منصة الترجمة
+      </footer>
+    </div>
+  )
+}

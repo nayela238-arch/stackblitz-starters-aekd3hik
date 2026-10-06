@@ -341,5 +341,4 @@ export default function OrderPage() {
           )}
         </div>
 
-        {fileUrl && (
-          <div style={card}>
+        {/* PART2 */}

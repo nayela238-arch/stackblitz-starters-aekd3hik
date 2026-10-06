@@ -341,4 +341,202 @@ export default function OrderPage() {
           )}
         </div>
 
-        {/* PART2 */}
+{fileUrl && (
+          <div style={card}>
+            <h3 style={cardTitle}>ملف الترجمة الأصلي</h3>
+
+            <a
+              href={fileUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              style={linkButton}
+            >
+              فتح / تحميل الملف
+            </a>
+          </div>
+        )}
+
+        {translatedFileUrl && (
+          <div
+            style={{
+              ...card,
+              background: '#e8f1ea',
+              border: '1px solid #b9d1be',
+            }}
+          >
+            <h3 style={cardTitle}>ملف الترجمة النهائي</h3>
+
+            <a
+              href={translatedFileUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              style={linkButton}
+            >
+              فتح / تحميل الترجمة النهائية
+            </a>
+          </div>
+        )}
+
+        {isAssignedTranslator && (
+          <div style={card}>
+            <h3 style={cardTitle}>رفع الترجمة النهائية</h3>
+
+            <input
+              type="file"
+              onChange={e =>
+                setTranslatorFile(e.target.files?.[0] || null)
+              }
+              style={{ display: 'block', maxWidth: '100%', fontSize: 14 }}
+            />
+
+            <button
+              onClick={uploadTranslatorFile}
+              style={{ ...primaryButton, marginTop: 12 }}
+            >
+              رفع ملف الترجمة
+            </button>
+
+            {uploadMsg && (
+              <p style={{ margin: '12px 0 0', fontSize: 14, color: '#4a5d4f' }}>
+                {uploadMsg}
+              </p>
+            )}
+          </div>
+        )}
+
+        {!user && (
+          <p style={{ marginTop: 18 }}>
+            <a
+              href="/login"
+              style={{ color: '#3f7551', fontWeight: 700 }}
+            >
+              سجّل دخول عشان تقدّم عرض
+            </a>
+          </p>
+        )}
+
+        {role === 'translator' && order.status === 'open' && (
+          <form
+            onSubmit={sendBid}
+            style={{ ...card, display: 'grid', gap: 12 }}
+          >
+            <h3 style={{ ...cardTitle, margin: 0 }}>قدّم عرضك</h3>
+
+            <input
+              type="number"
+              placeholder="السعر"
+              value={price}
+              onChange={e => setPrice(e.target.value)}
+              required
+              style={field}
+            />
+
+            <input
+              type="number"
+              placeholder="عدد الأيام"
+              value={days}
+              onChange={e => setDays(e.target.value)}
+              required
+              style={field}
+            />
+
+            <textarea
+              rows={4}
+              placeholder="رسالة للعميل"
+              value={message}
+              onChange={e => setMessage(e.target.value)}
+              style={{ ...field, resize: 'vertical', lineHeight: 1.7 }}
+            />
+
+            <button type="submit" style={primaryButton}>
+              إرسال العرض
+            </button>
+
+            {msg && (
+              <p style={{ margin: 0, fontSize: 14, color: '#4a5d4f' }}>
+                {msg}
+              </p>
+            )}
+          </form>
+        )}
+
+        {(isOwner || role === 'translator') && (
+          <section style={{ marginTop: 24 }}>
+            <h3 style={{ ...cardTitle, fontSize: 20 }}>
+              العروض ({bids.length})
+            </h3>
+
+            {bids.map(b => {
+              const accepted = order.translator_id === b.translator_id
+              return (
+                <div
+                  key={b.id}
+                  style={{
+                    padding: 16,
+                    margin: '12px 0',
+                    borderRadius: 16,
+                    background: accepted ? '#e8f1ea' : '#f7faf6',
+                    border: accepted
+                      ? '1px solid #8fbf9c'
+                      : '1px solid #d3dfd2',
+                    boxShadow: '0 6px 20px rgba(63, 90, 70, 0.08)',
+                  }}
+                >
+                  <b style={{ color: '#1f2a22', fontSize: 17 }}>
+                    {b.profiles?.full_name}
+                  </b>
+
+                  <div
+                    style={{
+                      display: 'flex',
+                      flexWrap: 'wrap',
+                      gap: 8,
+                      marginTop: 10,
+                    }}
+                  >
+                    <span style={chip}>السعر: {b.price}</span>
+                    <span style={chip}>المدة: {b.days} يوم</span>
+                  </div>
+
+                  {b.message && (
+                    <p
+                      style={{
+                        margin: '12px 0 0',
+                        lineHeight: 1.8,
+                        color: '#4a5d4f',
+                        whiteSpace: 'pre-wrap',
+                      }}
+                    >
+                      {b.message}
+                    </p>
+                  )}
+
+                  {isOwner && order.status === 'open' && (
+                    <button
+                      onClick={() => accept(b)}
+                      style={{ ...primaryButton, marginTop: 12 }}
+                    >
+                      قبول العرض
+                    </button>
+                  )}
+
+                  {accepted && (
+                    <div
+                      style={{
+                        marginTop: 12,
+                        color: '#2f6b44',
+                        fontWeight: 700,
+                      }}
+                    >
+                      ✅ العرض المقبول
+                    </div>
+                  )}
+                </div>
+              )
+            })}
+          </section>
+        )}
+      </main>
+    </div>
+  )
+}

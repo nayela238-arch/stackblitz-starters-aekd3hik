@@ -5,15 +5,15 @@ import { supabase } from '../../lib/supabase'
 const STATUS = {
   open: {
     label: 'مفتوح',
-    bg: 'rgba(34, 197, 94, 0.15)',
-    color: '#86efac',
-    border: 'rgba(34, 197, 94, 0.35)',
+    bg: '#dcefdf',
+    color: '#2f6b44',
+    border: '#b5d6bd',
   },
   in_progress: {
     label: 'قيد التنفيذ',
-    bg: 'rgba(245, 158, 11, 0.15)',
-    color: '#fcd34d',
-    border: 'rgba(245, 158, 11, 0.35)',
+    bg: '#f6efd9',
+    color: '#7a6420',
+    border: '#e6d8a8',
   },
 }
 
@@ -51,8 +51,8 @@ export default function Orders() {
     padding: '4px 10px',
     borderRadius: 999,
     fontSize: 13,
-    background: 'rgba(148, 163, 184, 0.14)',
-    color: '#cbd5e1',
+    background: '#e3ebe1',
+    color: '#4a5d4f',
   }
 
   return (
@@ -60,9 +60,8 @@ export default function Orders() {
       dir="rtl"
       style={{
         minHeight: '100vh',
-        background:
-          'linear-gradient(160deg, #0b1437 0%, #111c4e 45%, #1e1b4b 100%)',
-        color: '#e2e8f0',
+        background: 'linear-gradient(170deg, #eef3ec 0%, #e3ebe1 100%)',
+        color: '#2f3b32',
         fontFamily: 'Arial, sans-serif',
         padding: '40px 16px',
       }}
@@ -79,11 +78,11 @@ export default function Orders() {
           }}
         >
           <div>
-            <h1 style={{ margin: 0, color: '#ffffff', fontSize: 28 }}>
+            <h1 style={{ margin: 0, color: '#1f2a22', fontSize: 28 }}>
               طلبات الترجمة
             </h1>
             {!loading && !error && (
-              <p style={{ margin: '6px 0 0', color: '#94a3b8', fontSize: 14 }}>
+              <p style={{ margin: '6px 0 0', color: '#6b7d6f', fontSize: 14 }}>
                 {orders.length} طلب
               </p>
             )}
@@ -95,20 +94,20 @@ export default function Orders() {
               display: 'inline-block',
               padding: '12px 20px',
               borderRadius: 12,
-              background: '#2563eb',
+              background: '#4f8a62',
               color: '#ffffff',
               textDecoration: 'none',
               fontWeight: 700,
               fontSize: 15,
-              boxShadow: '0 8px 24px rgba(37, 99, 235, 0.4)',
+              boxShadow: '0 6px 16px rgba(79, 138, 98, 0.30)',
             }}
           >
             + طلب جديد
           </a>
         </div>
 
-        {loading && <p style={{ color: '#94a3b8' }}>جاري التحميل...</p>}
-        {error && <p style={{ color: '#fca5a5' }}>{error}</p>}
+        {loading && <p style={{ color: '#6b7d6f' }}>جاري التحميل...</p>}
+        {error && <p style={{ color: '#b04a4a' }}>{error}</p>}
 
         {!loading && !error && orders.length === 0 && (
           <div
@@ -116,8 +115,8 @@ export default function Orders() {
               textAlign: 'center',
               padding: '48px 16px',
               borderRadius: 16,
-              border: '1px dashed rgba(148, 163, 184, 0.35)',
-              color: '#94a3b8',
+              border: '1px dashed #b9c9b8',
+              color: '#6b7d6f',
             }}
           >
             مفيش طلبات لسه. ابدأ بأول طلب ترجمة.
@@ -128,9 +127,9 @@ export default function Orders() {
           {orders.map((o) => {
             const st = STATUS[o.status] || {
               label: o.status,
-              bg: 'rgba(148, 163, 184, 0.15)',
-              color: '#cbd5e1',
-              border: 'rgba(148, 163, 184, 0.35)',
+              bg: '#e3ebe1',
+              color: '#4a5d4f',
+              border: '#c5d3c4',
             }
             return (
               <a
@@ -140,11 +139,11 @@ export default function Orders() {
                   display: 'block',
                   textDecoration: 'none',
                   color: 'inherit',
-                  background: 'rgba(255, 255, 255, 0.05)',
-                  border: '1px solid rgba(148, 163, 184, 0.18)',
+                  background: '#f7faf6',
+                  border: '1px solid #d3dfd2',
                   borderRadius: 16,
                   padding: 20,
-                  boxShadow: '0 10px 30px rgba(2, 6, 23, 0.35)',
+                  boxShadow: '0 6px 20px rgba(63, 90, 70, 0.10)',
                 }}
               >
                 <div
@@ -158,7 +157,7 @@ export default function Orders() {
                   <h3
                     style={{
                       margin: 0,
-                      color: '#ffffff',
+                      color: '#1f2a22',
                       fontSize: 19,
                       lineHeight: 1.4,
                       wordBreak: 'break-word',

@@ -15,6 +15,12 @@ const STATUS = {
     color: '#7a6420',
     border: '#e6d8a8',
   },
+  delivered: {
+    label: 'تم التسليم',
+    bg: '#dde8f3',
+    color: '#2a5a8a',
+    border: '#b4cde6',
+  },
 }
 
 function formatDate(value) {
@@ -34,7 +40,7 @@ export default function Orders() {
     supabase
       .from('orders')
       .select('*')
-      .in('status', ['open', 'in_progress'])
+      .in('status', ['open', 'in_progress', 'delivered'])
       .order('created_at', { ascending: false })
       .then(({ data, error }) => {
         if (error) {

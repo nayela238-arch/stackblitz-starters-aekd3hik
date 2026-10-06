@@ -51,9 +51,9 @@ export default function Login() {
     boxSizing: 'border-box',
     padding: '12px 14px',
     borderRadius: 12,
-    border: '1px solid rgba(148, 163, 184, 0.3)',
-    background: 'rgba(15, 23, 42, 0.55)',
-    color: '#f1f5f9',
+    border: '1px solid #c5d3c4',
+    background: '#fbfdfa',
+    color: '#2f3b32',
     fontSize: 16,
     fontFamily: 'inherit',
     outline: 'none',
@@ -64,9 +64,8 @@ export default function Login() {
       dir="rtl"
       style={{
         minHeight: '100vh',
-        background:
-          'linear-gradient(160deg, #0b1437 0%, #111c4e 45%, #1e1b4b 100%)',
-        color: '#e2e8f0',
+        background: 'linear-gradient(170deg, #eef3ec 0%, #e3ebe1 100%)',
+        color: '#2f3b32',
         fontFamily: 'Arial, sans-serif',
         padding: '40px 16px',
         display: 'flex',
@@ -81,7 +80,7 @@ export default function Login() {
             display: 'block',
             textAlign: 'center',
             marginBottom: 20,
-            color: '#ffffff',
+            color: '#1f2a22',
             fontSize: 22,
             fontWeight: 800,
             textDecoration: 'none',
@@ -94,12 +93,12 @@ export default function Login() {
           style={{
             padding: 24,
             borderRadius: 20,
-            background: 'rgba(255, 255, 255, 0.05)',
-            border: '1px solid rgba(148, 163, 184, 0.18)',
-            boxShadow: '0 10px 30px rgba(2, 6, 23, 0.35)',
+            background: '#f7faf6',
+            border: '1px solid #d3dfd2',
+            boxShadow: '0 6px 20px rgba(63, 90, 70, 0.10)',
           }}
         >
-          <h1 style={{ margin: '0 0 18px', color: '#ffffff', fontSize: 26 }}>
+          <h1 style={{ margin: '0 0 18px', color: '#1f2a22', fontSize: 26 }}>
             {mode === 'login' ? 'تسجيل الدخول' : 'إنشاء حساب'}
           </h1>
 
@@ -130,11 +129,11 @@ export default function Login() {
                     alignItems: 'flex-start',
                     padding: 12,
                     borderRadius: 12,
-                    background: 'rgba(15, 23, 42, 0.4)',
-                    border: '1px solid rgba(148, 163, 184, 0.2)',
+                    background: '#eef3ec',
+                    border: '1px solid #d3dfd2',
                     fontSize: 14,
                     lineHeight: 1.7,
-                    color: '#cbd5e1',
+                    color: '#4a5d4f',
                     cursor: 'pointer',
                   }}
                 >
@@ -178,13 +177,13 @@ export default function Login() {
                 padding: '14px 20px',
                 borderRadius: 12,
                 border: 'none',
-                background: loading ? '#334155' : '#2563eb',
+                background: loading ? '#a9bdae' : '#4f8a62',
                 color: '#ffffff',
                 fontSize: 17,
                 fontWeight: 700,
                 cursor: loading ? 'default' : 'pointer',
                 fontFamily: 'inherit',
-                boxShadow: loading ? 'none' : '0 8px 24px rgba(37, 99, 235, 0.4)',
+                boxShadow: loading ? 'none' : '0 6px 16px rgba(79, 138, 98, 0.30)',
               }}
             >
               {loading ? 'جاري التنفيذ...' : mode === 'login' ? 'دخول' : 'تسجيل'}
@@ -196,7 +195,7 @@ export default function Login() {
                   margin: 0,
                   fontSize: 14,
                   lineHeight: 1.7,
-                  color: msgError ? '#fca5a5' : '#86efac',
+                  color: msgError ? '#b04a4a' : '#3f7551',
                 }}
               >
                 {msg}
@@ -218,9 +217,9 @@ export default function Login() {
             marginTop: 16,
             padding: '12px 16px',
             borderRadius: 12,
-            border: '1px solid rgba(148, 163, 184, 0.35)',
-            background: 'rgba(255, 255, 255, 0.06)',
-            color: '#e2e8f0',
+            border: '1px solid #c5d3c4',
+            background: '#eef3ec',
+            color: '#2f3b32',
             fontSize: 15,
             cursor: 'pointer',
             fontFamily: 'inherit',

@@ -5,6 +5,7 @@ import { useParams } from 'next/navigation'
 import { supabase } from '../../../lib/supabase'
 
 const STATUS = {
+  delivered: { label: 'تم التسليم', bg: '#dde8f3', color: '#2a5a8a', border: '#b4cde6' },
   open: {
     label: 'مفتوح',
     bg: '#dcefdf',
@@ -123,7 +124,19 @@ export default function OrderPage() {
 
     load()
   }
+async function confirmReceipt() {
+    const { error } = await supabase
+      .from('orders')
+      .update({ status: 'delivered' })
+      .eq('id', id)
 
+    if (error) {
+      alert('حصل خطأ: ' + error.message)
+      return
+    }
+
+    load()
+  }
   async function uploadTranslatorFile() {
     if (!translatorFile || !user) {
       setUploadMsg('اختار ملف الترجمة الأول')
@@ -376,7 +389,17 @@ export default function OrderPage() {
             </a>
           </div>
         )}
-
+{isOwner && order.status === 'in_progress' && translatedFileUrl && (
+          <div style={card}>
+            <h3 style={cardTitle}>تأكيد الاستلام</h3>
+            <p style={{ margin: '0 0 12px', color: '#4a5d4f', lineHeight: 1.8 }}>
+              لو استلمت الترجمة وراضي عنها، أكّد الاستلام لإنهاء الطلب.
+            </p>
+            <button onClick={confirmReceipt} style={primaryButton}>
+              تأكيد استلام الترجمة
+            </button>
+          </div>
+        )}
         {isAssignedTranslator && (
           <div style={card}>
             <h3 style={cardTitle}>رفع الترجمة النهائية</h3>

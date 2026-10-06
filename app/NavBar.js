@@ -7,6 +7,7 @@ import { supabase } from '../lib/supabase'
 const LINKS = [
   { href: '/orders', label: 'الطلبات' },
   { href: '/ai', label: 'ترجمة AI' },
+  { href: '/my-orders', label: 'طلباتي' },
   { href: '/orders/new', label: 'طلب جديد' },
 ]
 

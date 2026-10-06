@@ -4,6 +4,21 @@ import { useEffect, useState } from 'react'
 import { useParams } from 'next/navigation'
 import { supabase } from '../../../lib/supabase'
 
+const STATUS = {
+  open: {
+    label: 'مفتوح',
+    bg: '#dcefdf',
+    color: '#2f6b44',
+    border: '#b5d6bd',
+  },
+  in_progress: {
+    label: 'قيد التنفيذ',
+    bg: '#f6efd9',
+    color: '#7a6420',
+    border: '#e6d8a8',
+  },
+}
+
 export default function OrderPage() {
   const { id } = useParams()
 
@@ -150,192 +165,181 @@ export default function OrderPage() {
     load()
   }
 
+  const page = {
+    minHeight: '100vh',
+    background: 'linear-gradient(170deg, #eef3ec 0%, #e3ebe1 100%)',
+    color: '#2f3b32',
+    fontFamily: 'Arial, sans-serif',
+    padding: '40px 16px',
+  }
+
+  const card = {
+    marginTop: 18,
+    padding: 20,
+    borderRadius: 16,
+    background: '#f7faf6',
+    border: '1px solid #d3dfd2',
+    boxShadow: '0 6px 20px rgba(63, 90, 70, 0.10)',
+  }
+
+  const field = {
+    width: '100%',
+    boxSizing: 'border-box',
+    padding: '12px 14px',
+    borderRadius: 12,
+    border: '1px solid #c5d3c4',
+    background: '#fbfdfa',
+    color: '#2f3b32',
+    fontSize: 16,
+    fontFamily: 'inherit',
+    outline: 'none',
+  }
+
+  const primaryButton = {
+    padding: '12px 20px',
+    borderRadius: 12,
+    border: 'none',
+    background: '#4f8a62',
+    color: '#ffffff',
+    fontSize: 16,
+    fontWeight: 700,
+    cursor: 'pointer',
+    fontFamily: 'inherit',
+    boxShadow: '0 6px 16px rgba(79, 138, 98, 0.30)',
+  }
+
+  const linkButton = {
+    display: 'inline-block',
+    padding: '10px 18px',
+    borderRadius: 10,
+    background: '#4f8a62',
+    color: '#ffffff',
+    textDecoration: 'none',
+    fontWeight: 700,
+    fontSize: 15,
+  }
+
+  const cardTitle = { margin: '0 0 12px', color: '#1f2a22', fontSize: 18 }
+
+  const chip = {
+    display: 'inline-block',
+    padding: '4px 10px',
+    borderRadius: 999,
+    fontSize: 13,
+    background: '#e3ebe1',
+    color: '#4a5d4f',
+  }
+
   if (!order) {
-    return <p dir="rtl">جاري التحميل...</p>
+    return (
+      <div dir="rtl" style={page}>
+        <p style={{ textAlign: 'center', color: '#6b7d6f' }}>
+          جاري التحميل...
+        </p>
+      </div>
+    )
   }
 
   const isOwner = user?.id === order.client_id
   const isAssignedTranslator =
     user?.id === order.translator_id
 
+  const st = STATUS[order.status] || {
+    label: order.status,
+    bg: '#e3ebe1',
+    color: '#4a5d4f',
+    border: '#c5d3c4',
+  }
+
   return (
-    <main
-      dir="rtl"
-      style={{
-        maxWidth: 700,
-        margin: '40px auto',
-        padding: 16,
-      }}
-    >
-      <h1>{order.title}</h1>
+    <div dir="rtl" style={page}>
+      <main style={{ maxWidth: 720, margin: '0 auto' }}>
+        <a
+          href="/orders"
+          style={{
+            display: 'inline-block',
+            marginBottom: 14,
+            color: '#3f7551',
+            fontWeight: 700,
+            fontSize: 14,
+            textDecoration: 'none',
+          }}
+        >
+          → الرجوع للطلبات
+        </a>
 
-      <p>
-        {order.source_lang} ← {order.target_lang}
-      </p>
-
-      <p>
-        الميزانية: {order.budget ?? '-'} | الحالة:{' '}
-        <b>{order.status}</b>
-      </p>
-
-      <p>{order.notes}</p>
-
-      {fileUrl && (
         <div
           style={{
-            marginTop: 20,
-            padding: 16,
-            border: '1px solid #ddd',
-            borderRadius: 10,
+            padding: 24,
+            borderRadius: 20,
+            background: '#f7faf6',
+            border: '1px solid #d3dfd2',
+            boxShadow: '0 6px 20px rgba(63, 90, 70, 0.10)',
           }}
         >
-          <h3>ملف الترجمة الأصلي</h3>
-
-          <a
-            href={fileUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-            style={{ color: '#2563eb' }}
+          <div
+            style={{
+              display: 'flex',
+              alignItems: 'flex-start',
+              justifyContent: 'space-between',
+              gap: 12,
+            }}
           >
-            فتح / تحميل الملف
-          </a>
-        </div>
-      )}
-
-      {translatedFileUrl && (
-        <div
-          style={{
-            marginTop: 20,
-            padding: 16,
-            border: '1px solid #ddd',
-            borderRadius: 10,
-          }}
-        >
-          <h3>ملف الترجمة النهائي</h3>
-
-          <a
-            href={translatedFileUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-            style={{ color: '#16a34a' }}
-          >
-            فتح / تحميل الترجمة النهائية
-          </a>
-        </div>
-      )}
-
-      {isAssignedTranslator && (
-        <div
-          style={{
-            marginTop: 20,
-            padding: 16,
-            border: '1px solid #ddd',
-            borderRadius: 10,
-          }}
-        >
-          <h3>رفع الترجمة النهائية</h3>
-
-          <input
-            type="file"
-            onChange={e =>
-              setTranslatorFile(e.target.files?.[0] || null)
-            }
-          />
-
-          <button
-            onClick={uploadTranslatorFile}
-            style={{ marginTop: 10 }}
-          >
-            رفع ملف الترجمة
-          </button>
-
-          {uploadMsg && <p>{uploadMsg}</p>}
-        </div>
-      )}
-
-      {!user && (
-        <p>
-          <a href="/login">
-            سجّل دخول عشان تقدّم عرض
-          </a>
-        </p>
-      )}
-
-      {role === 'translator' && order.status === 'open' && (
-        <form
-          onSubmit={sendBid}
-          style={{
-            display: 'grid',
-            gap: 10,
-            marginTop: 24,
-          }}
-        >
-          <h3>قدّم عرضك</h3>
-
-          <input
-            type="number"
-            placeholder="السعر"
-            value={price}
-            onChange={e => setPrice(e.target.value)}
-            required
-          />
-
-          <input
-            type="number"
-            placeholder="عدد الأيام"
-            value={days}
-            onChange={e => setDays(e.target.value)}
-            required
-          />
-
-          <textarea
-            placeholder="رسالة للعميل"
-            value={message}
-            onChange={e => setMessage(e.target.value)}
-          />
-
-          <button type="submit">
-            إرسال العرض
-          </button>
-
-          {msg && <p>{msg}</p>}
-        </form>
-      )}
-
-      {(isOwner || role === 'translator') && (
-        <section style={{ marginTop: 24 }}>
-          <h3>العروض ({bids.length})</h3>
-
-          {bids.map(b => (
-            <div
-              key={b.id}
+            <h1
               style={{
-                border: '1px solid #ddd',
-                padding: 12,
-                margin: '10px 0',
+                margin: 0,
+                color: '#1f2a22',
+                fontSize: 26,
+                lineHeight: 1.4,
+                wordBreak: 'break-word',
               }}
             >
-              <b>{b.profiles?.full_name}</b>
+              {order.title}
+            </h1>
 
-              <p>
-                السعر: {b.price} | المدة: {b.days} يوم
-              </p>
+            <span
+              style={{
+                flexShrink: 0,
+                padding: '4px 12px',
+                borderRadius: 999,
+                fontSize: 13,
+                fontWeight: 700,
+                background: st.bg,
+                color: st.color,
+                border: `1px solid ${st.border}`,
+              }}
+            >
+              {st.label}
+            </span>
+          </div>
 
-              <p>{b.message}</p>
+          <div
+            style={{
+              display: 'flex',
+              flexWrap: 'wrap',
+              gap: 8,
+              marginTop: 14,
+            }}
+          >
+            <span style={chip}>
+              {order.source_lang} ← {order.target_lang}
+            </span>
+            <span style={chip}>الميزانية: {order.budget ?? '-'}</span>
+          </div>
 
-              {isOwner && order.status === 'open' && (
-                <button onClick={() => accept(b)}>
-                  قبول العرض
-                </button>
-              )}
+          {order.notes && (
+            <p
+              style={{
+                margin: '16px 0 0',
+                lineHeight: 1.9,
+                color: '#4a5d4f',
+                whiteSpace: 'pre-wrap',
+              }}
+            >
+              {order.notes}
+            </p>
+          )}
+        </div>
 
-              {order.translator_id === b.translator_id && (
-                <b>✅ العرض المقبول</b>
-              )}
-            </div>
-          ))}
-        </section>
-      )}
-    </main>
-  )
-}
+        {fileUrl && (
+          <div style={card}>

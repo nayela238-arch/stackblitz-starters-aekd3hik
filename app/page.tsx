@@ -9,37 +9,36 @@ export default function Home() {
   } as const
 
   const card = {
-    background: 'rgba(255, 255, 255, 0.05)',
+    background: '#f7faf6',
     borderRadius: 20,
     padding: 26,
-    border: '1px solid rgba(148, 163, 184, 0.18)',
-    boxShadow: '0 10px 30px rgba(2, 6, 23, 0.35)',
+    border: '1px solid #d3dfd2',
+    boxShadow: '0 6px 20px rgba(63, 90, 70, 0.10)',
   } as const
 
-  const link = { color: '#60a5fa', fontWeight: 700 } as const
+  const link = { color: '#3f7551', fontWeight: 700 } as const
 
   return (
     <div
       dir="rtl"
       style={{
         minHeight: '100vh',
-        background:
-          'linear-gradient(160deg, #0b1437 0%, #111c4e 45%, #1e1b4b 100%)',
-        color: '#e2e8f0',
+        background: 'linear-gradient(170deg, #eef3ec 0%, #e3ebe1 100%)',
+        color: '#2f3b32',
         fontFamily: 'Arial, sans-serif',
       }}
     >
       <header
         style={{
-          background: 'rgba(11, 20, 55, 0.7)',
-          borderBottom: '1px solid rgba(148, 163, 184, 0.15)',
+          background: 'rgba(247, 250, 246, 0.85)',
+          borderBottom: '1px solid #d3dfd2',
           padding: '18px 6%',
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'space-between',
         }}
       >
-        <div style={{ fontSize: 22, fontWeight: 800, color: '#ffffff' }}>
+        <div style={{ fontSize: 22, fontWeight: 800, color: '#1f2a22' }}>
           🌐 منصة الترجمة
         </div>
 
@@ -48,7 +47,7 @@ export default function Home() {
           style={{
             ...button,
             padding: '10px 18px',
-            background: '#2563eb',
+            background: '#4f8a62',
             color: '#fff',
             fontSize: 14,
           }}
@@ -62,7 +61,7 @@ export default function Home() {
           style={{
             padding: '90px 6% 80px',
             background:
-              'radial-gradient(circle at 50% 0%, rgba(59, 130, 246, 0.28), transparent 60%)',
+              'radial-gradient(circle at 50% 0%, rgba(79, 138, 98, 0.18), transparent 60%)',
             textAlign: 'center',
           }}
         >
@@ -71,9 +70,9 @@ export default function Home() {
               display: 'inline-block',
               padding: '8px 16px',
               borderRadius: 999,
-              background: 'rgba(59, 130, 246, 0.15)',
-              border: '1px solid rgba(96, 165, 250, 0.35)',
-              color: '#93c5fd',
+              background: '#dcefdf',
+              border: '1px solid #b5d6bd',
+              color: '#2f6b44',
               fontWeight: 700,
               fontSize: 14,
               marginBottom: 20,
@@ -89,19 +88,19 @@ export default function Home() {
               margin: '0 auto 24px',
               maxWidth: 900,
               fontWeight: 900,
-              color: '#ffffff',
+              color: '#1f2a22',
             }}
           >
             ترجمتك،
             <br />
-            <span style={{ color: '#60a5fa' }}>بشكل أسهل وأسرع</span>
+            <span style={{ color: '#4f8a62' }}>بشكل أسهل وأسرع</span>
           </h1>
 
           <p
             style={{
               maxWidth: 720,
               margin: '0 auto',
-              color: '#94a3b8',
+              color: '#6b7d6f',
               fontSize: 19,
               lineHeight: 1.9,
             }}
@@ -123,9 +122,9 @@ export default function Home() {
               href="/orders/new"
               style={{
                 ...button,
-                background: '#2563eb',
+                background: '#4f8a62',
                 color: '#fff',
-                boxShadow: '0 8px 24px rgba(37, 99, 235, 0.45)',
+                boxShadow: '0 6px 16px rgba(79, 138, 98, 0.30)',
               }}
             >
               📝 اطلب ترجمة
@@ -135,9 +134,9 @@ export default function Home() {
               href="/ai"
               style={{
                 ...button,
-                background: 'rgba(255, 255, 255, 0.06)',
-                color: '#e2e8f0',
-                border: '1px solid rgba(148, 163, 184, 0.35)',
+                background: '#f7faf6',
+                color: '#2f3b32',
+                border: '1px solid #c5d3c4',
               }}
             >
               🤖 جرّب AI
@@ -162,8 +161,8 @@ export default function Home() {
           >
             <div style={card}>
               <div style={{ fontSize: 36 }}>👤</div>
-              <h2 style={{ color: '#ffffff' }}>لأصحاب الطلبات</h2>
-              <p style={{ color: '#94a3b8', lineHeight: 1.7 }}>
+              <h2 style={{ color: '#1f2a22' }}>لأصحاب الطلبات</h2>
+              <p style={{ color: '#6b7d6f', lineHeight: 1.7 }}>
                 انشر طلبك وحدد الميزانية واستقبل عروض المترجمين.
               </p>
               <a href="/orders/new" style={link}>
@@ -173,8 +172,8 @@ export default function Home() {
 
             <div style={card}>
               <div style={{ fontSize: 36 }}>💼</div>
-              <h2 style={{ color: '#ffffff' }}>للمترجمين</h2>
-              <p style={{ color: '#94a3b8', lineHeight: 1.7 }}>
+              <h2 style={{ color: '#1f2a22' }}>للمترجمين</h2>
+              <p style={{ color: '#6b7d6f', lineHeight: 1.7 }}>
                 ابحث عن طلبات مناسبة وقدّم عروضك للعملاء.
               </p>
               <a href="/orders" style={link}>
@@ -184,8 +183,8 @@ export default function Home() {
 
             <div style={card}>
               <div style={{ fontSize: 36 }}>⚡</div>
-              <h2 style={{ color: '#ffffff' }}>ترجمة AI</h2>
-              <p style={{ color: '#94a3b8', lineHeight: 1.7 }}>
+              <h2 style={{ color: '#1f2a22' }}>ترجمة AI</h2>
+              <p style={{ color: '#6b7d6f', lineHeight: 1.7 }}>
                 ترجمة سريعة للنصوص باستخدام الذكاء الاصطناعي.
               </p>
               <a href="/ai" style={link}>
@@ -203,11 +202,11 @@ export default function Home() {
             textAlign: 'center',
           }}
         >
-          <h2 style={{ fontSize: 32, marginBottom: 12, color: '#ffffff' }}>
+          <h2 style={{ fontSize: 32, marginBottom: 12, color: '#1f2a22' }}>
             ليه تستخدم منصة الترجمة؟
           </h2>
 
-          <p style={{ color: '#94a3b8', fontSize: 17 }}>
+          <p style={{ color: '#6b7d6f', fontSize: 17 }}>
             كل أدوات الترجمة اللي تحتاجها في مكان واحد.
           </p>
 
@@ -221,24 +220,24 @@ export default function Home() {
           >
             <div style={{ padding: 22 }}>
               <div style={{ fontSize: 30 }}>🔒</div>
-              <h3 style={{ color: '#ffffff' }}>آمنة</h3>
-              <p style={{ color: '#94a3b8' }}>
+              <h3 style={{ color: '#1f2a22' }}>آمنة</h3>
+              <p style={{ color: '#6b7d6f' }}>
                 ملفاتك وطلباتك محفوظة بأمان.
               </p>
             </div>
 
             <div style={{ padding: 22 }}>
               <div style={{ fontSize: 30 }}>💬</div>
-              <h3 style={{ color: '#ffffff' }}>عروض متعددة</h3>
-              <p style={{ color: '#94a3b8' }}>
+              <h3 style={{ color: '#1f2a22' }}>عروض متعددة</h3>
+              <p style={{ color: '#6b7d6f' }}>
                 قارن بين عروض المترجمين واختر الأنسب لك.
               </p>
             </div>
 
             <div style={{ padding: 22 }}>
               <div style={{ fontSize: 30 }}>📎</div>
-              <h3 style={{ color: '#ffffff' }}>رفع واستلام الملفات</h3>
-              <p style={{ color: '#94a3b8' }}>
+              <h3 style={{ color: '#1f2a22' }}>رفع واستلام الملفات</h3>
+              <p style={{ color: '#6b7d6f' }}>
                 ارفع ملفك الأصلي واستلم الترجمة النهائية من نفس الصفحة.
               </p>
             </div>
@@ -248,11 +247,11 @@ export default function Home() {
 
       <footer
         style={{
-          borderTop: '1px solid rgba(148, 163, 184, 0.15)',
-          background: 'rgba(11, 20, 55, 0.7)',
+          borderTop: '1px solid #d3dfd2',
+          background: '#f7faf6',
           padding: '24px 6%',
           textAlign: 'center',
-          color: '#94a3b8',
+          color: '#6b7d6f',
           fontSize: 14,
         }}
       >

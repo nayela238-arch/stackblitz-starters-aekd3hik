@@ -119,9 +119,9 @@ export default function AiTranslate() {
     boxSizing: 'border-box',
     padding: '12px 14px',
     borderRadius: 12,
-    border: '1px solid rgba(148, 163, 184, 0.3)',
-    background: 'rgba(15, 23, 42, 0.55)',
-    color: '#f1f5f9',
+    border: '1px solid #c5d3c4',
+    background: '#fbfdfa',
+    color: '#2f3b32',
     fontSize: 16,
     fontFamily: 'inherit',
     outline: 'none',
@@ -130,30 +130,29 @@ export default function AiTranslate() {
   const smallButton = {
     padding: '8px 14px',
     borderRadius: 10,
-    border: '1px solid rgba(148, 163, 184, 0.35)',
-    background: 'rgba(255, 255, 255, 0.06)',
-    color: '#e2e8f0',
+    border: '1px solid #c5d3c4',
+    background: '#eef3ec',
+    color: '#2f3b32',
     fontSize: 14,
     cursor: 'pointer',
     fontFamily: 'inherit',
   }
 
-  const label = { fontSize: 13, color: '#94a3b8', marginBottom: 6, display: 'block' }
+  const label = { fontSize: 13, color: '#6b7d6f', marginBottom: 6, display: 'block' }
 
   return (
     <div
       dir="rtl"
       style={{
         minHeight: '100vh',
-        background:
-          'linear-gradient(160deg, #0b1437 0%, #111c4e 45%, #1e1b4b 100%)',
-        color: '#e2e8f0',
+        background: 'linear-gradient(170deg, #eef3ec 0%, #e3ebe1 100%)',
+        color: '#2f3b32',
         fontFamily: 'Arial, sans-serif',
         padding: '40px 16px',
       }}
     >
       <main style={{ maxWidth: 680, margin: '0 auto' }}>
-        <h1 style={{ margin: 0, color: '#ffffff', fontSize: 28 }}>
+        <h1 style={{ margin: 0, color: '#1f2a22', fontSize: 28 }}>
           ترجمة فورية بالذكاء الاصطناعي
         </h1>
 
@@ -162,9 +161,9 @@ export default function AiTranslate() {
             marginTop: 14,
             padding: '10px 14px',
             borderRadius: 12,
-            background: 'rgba(245, 158, 11, 0.12)',
-            border: '1px solid rgba(245, 158, 11, 0.3)',
-            color: '#fcd34d',
+            background: '#f6efd9',
+            border: '1px solid #e6d8a8',
+            color: '#7a6420',
             fontSize: 13,
             lineHeight: 1.7,
           }}
@@ -179,9 +178,9 @@ export default function AiTranslate() {
             marginTop: 20,
             padding: 20,
             borderRadius: 20,
-            background: 'rgba(255, 255, 255, 0.05)',
-            border: '1px solid rgba(148, 163, 184, 0.18)',
-            boxShadow: '0 10px 30px rgba(2, 6, 23, 0.35)',
+            background: '#f7faf6',
+            border: '1px solid #d3dfd2',
+            boxShadow: '0 6px 20px rgba(63, 90, 70, 0.10)',
             display: 'grid',
             gap: 16,
           }}
@@ -251,7 +250,7 @@ export default function AiTranslate() {
                 marginTop: 8,
               }}
             >
-              <span style={{ fontSize: 13, color: '#94a3b8' }}>
+              <span style={{ fontSize: 13, color: '#6b7d6f' }}>
                 {text.length} / {MAX_CHARS}
               </span>
               {text && (
@@ -269,13 +268,13 @@ export default function AiTranslate() {
               padding: '14px 20px',
               borderRadius: 12,
               border: 'none',
-              background: loading ? '#334155' : '#2563eb',
+              background: loading ? '#a9bdae' : '#4f8a62',
               color: '#ffffff',
               fontSize: 17,
               fontWeight: 700,
               cursor: loading ? 'default' : 'pointer',
               fontFamily: 'inherit',
-              boxShadow: loading ? 'none' : '0 8px 24px rgba(37, 99, 235, 0.4)',
+              boxShadow: loading ? 'none' : '0 6px 16px rgba(79, 138, 98, 0.30)',
             }}
           >
             {loading ? 'جاري الترجمة...' : 'ترجم'}
@@ -287,7 +286,7 @@ export default function AiTranslate() {
             style={{
               margin: '14px 4px 0',
               fontSize: 14,
-              color: msgError ? '#fca5a5' : '#94a3b8',
+              color: msgError ? '#b04a4a' : '#6b7d6f',
             }}
           >
             {msg}
@@ -300,8 +299,8 @@ export default function AiTranslate() {
               marginTop: 16,
               padding: 20,
               borderRadius: 20,
-              background: 'rgba(59, 130, 246, 0.1)',
-              border: '1px solid rgba(96, 165, 250, 0.35)',
+              background: '#e8f1ea',
+              border: '1px solid #b9d1be',
             }}
           >
             <div
@@ -312,7 +311,7 @@ export default function AiTranslate() {
                 marginBottom: 12,
               }}
             >
-              <span style={{ fontSize: 14, color: '#93c5fd', fontWeight: 700 }}>
+              <span style={{ fontSize: 14, color: '#3f7551', fontWeight: 700 }}>
                 الترجمة
               </span>
               <button type="button" onClick={copyResult} style={smallButton}>
@@ -325,7 +324,7 @@ export default function AiTranslate() {
                 whiteSpace: 'pre-wrap',
                 lineHeight: 1.9,
                 fontSize: 18,
-                color: '#ffffff',
+                color: '#1f2a22',
               }}
             >
               {result}

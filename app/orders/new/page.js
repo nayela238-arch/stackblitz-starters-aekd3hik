@@ -235,3 +235,39 @@ export default function NewOrder() {
               style={{ display: 'block', marginTop: 10, maxWidth: '100%' }}
             />
           </label>
+<button
+            type="submit"
+            disabled={loading}
+            style={{
+              padding: '14px 20px',
+              borderRadius: 12,
+              border: 'none',
+              background: loading ? '#a9bdae' : '#4f8a62',
+              color: '#ffffff',
+              fontSize: 17,
+              fontWeight: 700,
+              cursor: loading ? 'default' : 'pointer',
+              fontFamily: 'inherit',
+              boxShadow: loading ? 'none' : '0 6px 16px rgba(79, 138, 98, 0.30)',
+            }}
+          >
+            {loading ? 'جاري النشر...' : 'نشر الطلب'}
+          </button>
+
+          {msg && (
+            <p
+              style={{
+                margin: 0,
+                fontSize: 14,
+                lineHeight: 1.7,
+                color: msgError ? '#b04a4a' : '#3f7551',
+              }}
+            >
+              {msg}
+            </p>
+          )}
+        </form>
+      </main>
+    </div>
+  )
+}

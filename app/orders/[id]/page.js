@@ -125,6 +125,42 @@ const [aiBusy, setAiBusy] = useState(false)
 
     load()
   }
+  async function startAiTranslation() {
+    setAiBusy(true)
+    setAiMsg('جاري الترجمة، قد تستغرق حتى دقيقة. متقفلش الصفحة...')
+
+    try {
+      const {
+        data: { session },
+      } = await supabase.auth.getSession()
+
+      const res = await fetch('/api/ai-translate-order', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${session?.access_token}`,
+        },
+        body: JSON.stringify({ orderId: id }),
+      })
+
+      let data = {}
+      try {
+        data = await res.json()
+      } catch (_) {}
+
+      if (!res.ok) {
+        setAiMsg(data.error || 'حصل خطأ في الترجمة، جرّب تاني')
+      } else {
+        setAiMsg('تمت الترجمة ✅')
+        load()
+      }
+    } catch (err) {
+      console.error(err)
+      setAiMsg('حصل خطأ في الاتصال، جرّب تاني')
+    }
+
+    setAiBusy(false)
+  }
 async function confirmReceipt() {
     const { error } = await supabase
       .from('orders')
@@ -390,6 +426,37 @@ async function confirmReceipt() {
             </a>
           </div>
         )}
+{isOwner &&
+          order.status === 'in_progress' &&
+          order.file_path &&
+          !translatedFileUrl &&
+          bids.some(
+            b => b.translator_id === order.translator_id && b.profiles?.is_ai
+          ) && (
+            <div style={card}>
+              <h3 style={cardTitle}>الترجمة الآلية</h3>
+              <p style={{ margin: '0 0 12px', color: '#4a5d4f', lineHeight: 1.8 }}>
+                مترجم AI هيفتح الملف ويترجمه ويرفع الناتج هنا. الملفات المدعومة:
+                PDF أو نص أو صورة (حتى 4 ميجا). الترجمة آلية وقد تحتوي على أخطاء.
+              </p>
+              <button
+                onClick={startAiTranslation}
+                disabled={aiBusy}
+                style={{
+                  ...primaryButton,
+                  background: aiBusy ? '#a9bdae' : '#4f8a62',
+                  cursor: aiBusy ? 'default' : 'pointer',
+                }}
+              >
+                {aiBusy ? 'جاري الترجمة...' : 'ابدأ الترجمة الآلية'}
+              </button>
+              {aiMsg && (
+                <p style={{ margin: '12px 0 0', fontSize: 14, color: '#4a5d4f' }}>
+                  {aiMsg}
+                </p>
+              )}
+            </div>
+          )}
 {isOwner && order.status === 'in_progress' && translatedFileUrl && (
           <div style={card}>
             <h3 style={cardTitle}>تأكيد الاستلام</h3>

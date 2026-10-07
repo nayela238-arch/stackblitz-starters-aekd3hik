@@ -35,7 +35,8 @@ export default function OrderPage() {
   const [translatedFileUrl, setTranslatedFileUrl] = useState(null)
   const [translatorFile, setTranslatorFile] = useState(null)
   const [uploadMsg, setUploadMsg] = useState('')
-
+const [aiBusy, setAiBusy] = useState(false)
+  const [aiMsg, setAiMsg] = useState('')
   async function load() {
     const { data: o } = await supabase
       .from('orders')
@@ -63,7 +64,7 @@ export default function OrderPage() {
 
     const { data: b } = await supabase
       .from('bids')
-      .select('*, profiles(full_name)')
+      .select('*, profiles(full_name, is_ai)')
       .eq('order_id', id)
 
     setBids(b || [])
